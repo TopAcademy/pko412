@@ -1,11 +1,8 @@
-﻿#include "point2d.h"
+﻿#include "rectangle.h"
+#include "point2d.h"
+using namespace top;
 
 int main()
 {
-    top::Point2d p1(10, 10);
-    top::Point2d p2 = p1;
-    p2 = p1 + p2;
-    p1.print();
-    p2.print();
-    return 0;
+	return 0;
 }

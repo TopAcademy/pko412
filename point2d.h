@@ -24,10 +24,14 @@ namespace top
 		void print() const;
 		// Move point to new coordinates
 		void move(int, int);
+		// Move point horizontally & vertically
+		void move_x(int);
+		void move_y(int);
 
 		// Operators
 		Point2d& operator=(const Point2d&);
 		Point2d operator+(const Point2d&) const;
+		friend std::ostream& operator << (std::ostream&, const Point2d&);
 	};
 
 
@@ -47,6 +51,15 @@ namespace top
 		y = new_y;
 	}
 
+	// Move point horizontally
+	void Point2d::move_x(int dx) {
+		x += dx;
+	}
+	// Move point vertically
+	void Point2d::move_y(int dy) {
+		y += dy;
+	}
+
 
 	/*
 	 * Class operators definition
@@ -63,6 +76,12 @@ namespace top
 	// Operator +
 	Point2d Point2d::operator+(const Point2d& right) const {
 		return Point2d(x + right.x, y + right.y);
+	}
+
+	// Operator << with ostream
+	std::ostream& operator << (std::ostream& console, const Point2d& p) {
+		p.print();
+		return console;
 	}
 
 } // namespace
