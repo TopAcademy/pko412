@@ -64,6 +64,13 @@ namespace top {
 		}
 
 		/**
+		* Height & width getters
+		*/
+		
+		unsigned short get_height() { return height; }
+		unsigned short get_width() { return width; }
+
+		/**
 		* Print the string at given position
 		* 
 		* Outputs the string at the position of (row; col).
@@ -75,6 +82,8 @@ namespace top {
 		* @param color: output color (`default_color` by-default).
 		*/
 		void print(std::string content, short row, short col, Color color = SmartConsole::default_color) {
+			if (row > height) row = height - 2;
+			if (col > width) col = width - 2;
 			// Set cursor position
 			std::cout << "\x1b[" << row << ";" << col << "H";
 			// Set color
