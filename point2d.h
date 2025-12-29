@@ -14,11 +14,11 @@ namespace top
 	public:
 
 		// Default constructor
-		Point2d() : x(0), y(0) {}
+		Point2d() : x(0), y(0) { counter++; }
 		// Two-args constructor
-		Point2d(int x, int y) : x(x), y(y) {}
+		Point2d(int x, int y) : x(x), y(y) { counter++; }
 		// Copy constructor
-		Point2d(const Point2d& r) : x(r.x), y(r.y) {};
+		Point2d(const Point2d& r) : x(r.x), y(r.y) { counter++; }
 
 		// Display position
 		void print() const;
@@ -32,8 +32,19 @@ namespace top
 		Point2d& operator=(const Point2d&);
 		Point2d operator+(const Point2d&) const;
 		friend std::ostream& operator << (std::ostream&, const Point2d&);
+
+		// statics
+	private:
+		static unsigned int counter;
+	public:
+		static void show_count() {
+			std::cout << "Total points: " << Point2d::counter << std::endl;
+		}
+
 	};
 
+	// Init static vars
+	unsigned int Point2d::counter = 0;
 
 	/*
 	 * Class methods definition

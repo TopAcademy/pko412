@@ -23,13 +23,23 @@ namespace top
 		void print() const;
 		// Operator << with ostream
 		friend std::ostream& operator << (std::ostream&, const Rectangle&);
+
+		static Rectangle create_random();
 	};
 
 	/*
 	 * Class methods definition
 	 */
 
+	Rectangle Rectangle::create_random() {
+		int s = double(double(rand()) / RAND_MAX) * 10 + 1;
+		int x = double(double(rand()) / RAND_MAX) * 10 + 1;
+		int y = double(double(rand()) / RAND_MAX) * 10 + 1;
+		return Rectangle(Point2d(x, y), s, s);
+	}
+
 	// Constructor by top-left point & width & height
+
 	Rectangle::Rectangle(const Point2d& p1, int width, int height) {
 		points[0] = p1;
 		points[1] = p1;
