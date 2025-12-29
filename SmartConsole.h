@@ -35,14 +35,12 @@ namespace top {
 		static Color default_color;	// current setting of outut color.
 	
 	public:
-		
 
 		/**
-		* Конструктор.
+		* Constructor.
 		* 
-		* Задает цвет вывода по-умолчанию: белый.
-		* Определяет текущие размеры консольного окна и устанавливает их в полях объекта.
-		* Очищает консольное окно и выключает отображение курсора.
+		* Obtain and store size of the console screen.
+		* Clear console and switch off the cursor.
 		*/
 		SmartConsole() {
 			// Clear the screen and switch off the cursor
@@ -55,7 +53,6 @@ namespace top {
 			this->width = cinfo.srWindow.Right - cinfo.srWindow.Left + 1;
 		}
 
-
 		/**
 		* Set the current (default) output color
 		* 
@@ -65,7 +62,6 @@ namespace top {
 		void set_color(Color color) {
 			SmartConsole::default_color = color;
 		}
-
 
 		/**
 		* Print the string at given position
@@ -87,12 +83,10 @@ namespace top {
 			std::cout << content;
 		}
 
-
 	}; // class SmartConsole
 
 	// Statics init
 	Color SmartConsole::default_color = White;
-
 
 } // namespace top
 
