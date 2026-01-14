@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <stdexcept>
 
 namespace top
 {
@@ -8,16 +9,38 @@ namespace top
 
 	class Date
 	{
-		uchar day, month, year;
+	private:
+		uchar day, month;
+		ushort year;
 
-		Date(uchar d, uchar m, uchar y) : day(d), month(m), year(y) {};   // Constructor
-		void display();  // Print date on the console in format `dd.mm.yyyy`
-	};
+	public:
 
+		// Constructor setting date value
+		// Throws exception `out_of_range` if the passed date items are wrong
+		Date(uchar d, uchar m, ushort y) {
+			set(d, m, y);
+		}
 
-	void Date::display() {
-		std::cout << short(day) << '.' << ((month < 10) ? "0" : "") << short(month) << '.' << short(year);
-	}
+		// Set date value
+		// Throws exception `out_of_range` if the passed date items are wrong
+		void set(uchar d, uchar m, ushort y) {
+			if (m > 12) {
+				throw std::out_of_range("Date items are out of range");
+			}
+			day = d;
+			month = m;
+			year = y;
+		}
+
+		// Print date on the console in format `dd.mm.yyyy`
+		void display() {
+			std::cout 
+				<< short(day) 
+				<< '.' << ((month < 10) ? "0" : "") << short(month) 
+				<< '.' << year;
+		}
+
+	}; // class Date
 
 
 } // namespace top
