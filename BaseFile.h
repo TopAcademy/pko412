@@ -1,3 +1,4 @@
+// BaseFile.h
 #pragma once
 #include <xiosbase>
 #include <fstream>
@@ -8,26 +9,18 @@ enum class FILE_MODES {
 	WRITE
 };
 
-
+// Base interface for file processing
 class BaseFile
 {
 protected:
-	std::basic_ios<char, std::char_traits<char>> * pstream;
+	//std::basic_ios<char, std::char_traits<char>> * pstream;
 
 public:
 
-	BaseFile(std::string path, FILE_MODES mode) {
-		open(path, mode);
-	}
+	BaseFile() = default;
 
-	void open(std::string path, FILE_MODES mode)
-	{
-		if (mode == FILE_MODES::READ) {
-			pstream = new std::ifstream(path);
-		}
-		else {
-			pstream = new std::ofstream(path);
-		}
-	}
+	virtual void open(std::string path) = 0;
+
+	virtual void close() = 0;
 
 };
